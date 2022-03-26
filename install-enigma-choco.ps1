@@ -21,12 +21,20 @@ Write-Host "... --- ..."
 Write-Host "Ending policy adjustments + Chocolatey Install"
 Write-Host "---"
 Write-Host ""
+$chocoGuiInstaller = Start-Job {
+    refreshenv
+    choco feature enable -n=allowGlobalConfirmation
+    choco install chocolateygui
+}
+Wait-Job $chocoGuiInstaller
+Receive-Job $chocoGuiInstaller
 Write-Host "---"
 Write-Host "Refreshenv"
 Write-Host "... --- ..."
 Write-Host ""
 $refEnv = Start-Job {
     choco feature enable -n=allowGlobalConfirmation
+    choco install enable -n=allowGlobalConfirmation
     refreshenv
 }
 Wait-Job $refEnv
