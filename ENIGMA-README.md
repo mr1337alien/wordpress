@@ -88,4 +88,4 @@ The resulting error will seem to have nothing to do with the code mentioned abov
 
 absolutely KILLER MOVE for anyone below HIGHLY ADVANCED Programming Level.
 
-The programmer also needs to know about basics of encryption/decryption knowledge and solid knowledge of the PHP Class Syntax
+The programmer also needs to know about the basics of encryption/decryption processing and he needs solid knowledge of the PHP Class Syntax
