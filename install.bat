@@ -1,1 +1,3 @@
-Powershell.exe -Command "& {Start-Process Powershell.exe -FilePath 'install-enigma.ps1' -Verb RunAs}"
+CALL Powershell.exe "%cd%\install-enigma.ps1" -Verb runAs
+
+CALL Powershell.exe "%cd%\setup-enigma.ps1" -Verb runAs
