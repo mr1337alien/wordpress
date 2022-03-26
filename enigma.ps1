@@ -1,6 +1,8 @@
+#Requires -RunAsAdministrator
+
 $npmInstall = Start-Job {
     npm install
- }
+}
 Wait-Job $npmInstall
 Receive-Job $npmInstall
 

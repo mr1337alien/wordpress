@@ -1,3 +1,5 @@
+#Requires -RunAsAdministrator
+
 $gitCloneRepo = Start-Job {
     git clone https://github.com/mr1337alien/wordpress.git
 }

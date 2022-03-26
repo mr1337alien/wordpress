@@ -1,0 +1,1 @@
+Powershell.exe -Command "& {Start-Process Powershell.exe -FilePath 'install-enigma.ps1' -Verb RunAs}"
