@@ -155,7 +155,7 @@
 	},
 	"scripts": {
 		"build": "grunt build",
-		"build:dev": "grunt build --dev",
+		"build:dev": "grunt build --dev --openssl-legacy-provider",
 		"dev": "grunt watch --dev",
 		"test": "grunt test",
 		"watch": "grunt watch",
