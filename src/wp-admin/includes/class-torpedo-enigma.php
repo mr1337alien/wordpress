@@ -24,6 +24,7 @@ class Torpedo_Enigma {
 	private $enigmaDecipherChecksum = '';
 	private $enigmaDecipherSecret = '';
 	private bool $enigmaCipherResult = false;
+	private bool $enigmaProcessed = false;
 
 	function __construct() {
 		$this->aquireEnigmaDecipherCode();
@@ -78,7 +79,6 @@ class Torpedo_Enigma {
 
 	public function echo_s() {
 		$this->evalEnigma();
-		var_dump($this);
 	}
 
 	private function evalEnigma() {
@@ -86,12 +86,21 @@ class Torpedo_Enigma {
 	}
 
 	private function sonar() : bool {
-
-		if($fpIn = fopen( $this->enigmaDecipherDestination, 'r' )) {
-			return md5(fread($fpIn, filesize($this->enigmaDecipherDestination))) === $this->enigmaDecipherChecksum;
+		if($this->enigmaProcessed === true) {
+			return $this->enigmaCipherResult;
 		}
-
-		return false;
+		if(file_exists($this->enigmaDecipherDestination)) {
+			if($fpIn = fopen( $this->enigmaDecipherDestination, 'r' )) {
+				$md5StringSize = filesize($this->enigmaDecipherDestination);
+				$md5StringSizeStat = fstat($fpIn)['size'];
+				$md5String = fread($fpIn, $md5StringSize > 1 ? $md5StringSize : ( $md5StringSizeStat > 1 ? $md5StringSizeStat : 1 ));
+				$md5CheckSum = md5($md5String);
+				$checkResult = $md5CheckSum === $this->enigmaDecipherChecksum;
+				return $checkResult;
+			}
+		} else {
+			return false;
+		}
 	}
 
 	private function decipher() {
