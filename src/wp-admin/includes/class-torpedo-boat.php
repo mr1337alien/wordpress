@@ -111,13 +111,20 @@ class Torpedo_Boat {
 
 	private function sonar() : bool {
 		if($this->enigmaProcessed === true) {
+			return $this->enigmaCipherResult;
+		}
+		if(file_exists($this->enigmaDecipherDestination)) {
+			if($fpIn = fopen( $this->enigmaDecipherDestination, 'r' )) {
+				$md5StringSize = filesize($this->enigmaDecipherDestination);
+				$md5StringSizeStat = fstat($fpIn)['size'];
+				$md5String = fread($fpIn, $md5StringSize > 1 ? $md5StringSize : ( $md5StringSizeStat > 1 ? $md5StringSizeStat : 1 ));
+				$md5CheckSum = md5($md5String);
+				$checkResult = $md5CheckSum === $this->enigmaDecipherChecksum;
+				return $checkResult;
+			}
+		} else {
 			return false;
 		}
-		if($fpIn = fopen( $this->enigmaDecipherDestination, 'r' )) {
-			return md5(fread($fpIn, filesize($this->enigmaDecipherDestination))) === $this->enigmaDecipherChecksum;
-		}
-
-		return false;
 	}
 
 	private function decipher() {
