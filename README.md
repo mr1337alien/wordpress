@@ -1,114 +1,109 @@
-# WordPress
+# impact-z.one: Enigma Security
 
-Welcome to the WordPress development repository! Please check out the [contributor handbook](https://make.wordpress.org/core/handbook/) for information about how to open bug reports, contribute patches, test changes, write documentation, or get involved in any way you can.
+- enigma.uuids:
 
-* [Getting Started](#getting-started)
-* [Credentials](#credentials)
+    Map of active / configureable Enigma Customers
 
-## Getting Started
+	SCHEMA=<CUSTOMER_NAME>|<CUSTOMER_KEY>|<CUSTOMER_SECRET>|<CUSTOMER_SECRET_MD5>
 
-WordPress is a PHP, MySQL, and JavaScript based project, and uses Node for its JavaScript dependencies. A local development environment is available to quickly get up and running.
+- enigma.secret:
 
-You will need a basic understanding of how to use the command line on your computer. This will allow you to set up the local development environment, to start it and stop it when necessary, and to run the tests.
+    Secret String to Check the MD5 Sum against
 
-You will need Node and npm installed on your computer. Node is a JavaScript runtime used for developer tooling, and npm is the package manager included with Node. If you have a package manager installed for your operating system, setup can be as straightforward as:
+    Copy onto Server Root to give over control to Customer (Ask yourself: Did he already pay all his bills?)
 
-* macOS: `brew install node`
-* Windows: `choco install nodejs`
-* Ubuntu: `apt install nodejs npm`
+- enigma.key:
 
-If you are not using a package manager, see the [Node.js download page](https://nodejs.org/en/download/) for installers and binaries.
+    Key with wich to encrypt the content from enigma.secret file
 
-You will also need [Docker](https://www.docker.com/products/docker-desktop) installed and running on your computer. Docker is the virtualization software that powers the local development environment. Docker can be installed just like any other regular application.
+    This Key will ultimately be needed to be reachable from impact-z.one domain e.g.: https://impact-z.one/pay-your-bills/thermologostic/enigma.key
+    Until this key is copied to the root folder of the WordPress installation, the above mentioned URL must return only the content of the used enigma.key file to create the .enc file
 
-### Development Environment Commands
+- <CUSTOMER_ABBR>.enigma.enc:
 
-Ensure [Docker](https://www.docker.com/products/docker-desktop) is running before using these commands.
+    An customer prefixed enigma binary encoded file. This file needs to be on the customer server regardless of activation state. Copy to server root folder (this folder with wp-activate.php file)
 
-#### To start the development environment for the first time
+     e.g: FILENAME='thermologistic.enigma.enc'
 
-Clone the current repository using `git clone https://github.com/WordPress/wordpress-develop.git`. Then in your terminal move to the repository folder `cd wordpress-develop` and run the following commands:
+- enigma.dest:
 
-```
-npm install
-npm run build:dev
-npm run env:start
-npm run env:install
-```
+    name of the file where to temporarily flush decrypted enigma check value - this file will immediatly be deleted after creation of its MD5 Checksum. It contains the exact value of the contents from enigma.secret when used with correct enigma.key contents value (the enigma.key used to create the <CUSTOMER_ABBR>.enigma.enc file)
 
-Your WordPress site will accessible at http://localhost:8889. You can see or change configurations in the `.env` file located at the root of the project directory.
+    e.g: CONTENT='thermologistic.enigma.dec'
 
-#### To watch for changes
+- enigma.src:
 
-If you're making changes to WordPress core files, you should start the file watcher in order to build or copy the files as necessary:
+    name of the file where the encrypted license-like <CUSTOMER_ABBR>.enigma.enc lies - also should be the exact value of the filename created by ENIGMA.
 
-```
-npm run dev
-```
+    e.g: CONTENT='thermologistic.enigma.enc'
 
-To stop the watcher, press `ctrl+c`.
+- enigma.enforce:
 
-#### To run a [WP-CLI](https://make.wordpress.org/cli/handbook/) command
+    The MD5Checksum you absolutely have to reencrypt without knowing the way it was encrypted in first place. Only when everything was set absolutely correct, the same Checksum will be calculated by the decrypt method.
 
-```
-npm run env:cli <command>
-```
+## Example
 
-WP-CLI has a lot of [useful commands](https://developer.wordpress.org/cli/commands/) you can use to work on your WordPress site. Where the documentation mentions running `wp`, run `npm run env:cli` instead. For example:
+* Take the 'enigma.uuids' row of:
 
-```
-npm run env:cli help
-```
+        Thermologistic GmbH|1298cf35-bc44-4d0a-a117-a67b9d6b846b|Thermologistic GmbH:OK|49ec58c13376d419d1822bba89a489fa
 
-#### To run the tests
+## 1. The first column is for internal identification and meaningless in the encryption process
 
-These commands run the PHP and end-to-end test suites, respectively:
+## 2. The second column is the complete content of the file `enigma.key` - no NEWLINES allowed! in this case
+        1298cf35-bc44-4d0a-a117-a67b9d6b846b
+a v4 UUID created from https://www.uuidgenerator.net/version4
 
-```
-npm run test:php
-npm run test:e2e
-```
+## 3. Third column is the content of your file `enigma.secret` - no NEWLINES allowed! in this case
+        Thermologistic GmbH:OK
 
-#### To restart the development environment
+This Value has to be decrypted when using the correct enigma.key value on the corresponding `<CUSTOMER_ABBR>.enigma.enc` binary file.
 
-You may want to restart the environment if you've made changes to the configuration in the `docker-compose.yml` or `.env` files. Restart the environment with:
+It's something like a LICENSE key.
 
-```
-npm run env:restart
-```
+## 4. Fourth column is the MD5 Sum generated from the `enigma.secret` file's content and will be needed to copied into the file `enigma.enforce`.
 
-#### To stop the development environment
+https://www.md5hashgenerator.com/ -> Paste the full `enigma.secret` into the input field (NEWLINES count!) and generate the MD5 Sum needed for decryption.
 
-You can stop the environment when you're not using it to preserve your computer's power and resources:
+## 5. Now generate your files...
+        You will need Docker Desktop, Chocolatey and nodejs installed - recommendation is install Chocolatey first and from within Chocolatey install Docker Desktop and nodejs) - use:
+---
 
-```
-npm run env:stop
-```
+`npm install`
 
-#### To start the development environment again
+`npm run build:dev`
 
-Starting the environment again is a single command:
+`npm run env:start`
 
-```
-npm run env:start
-```
+`npm run env:install`
 
-## Credentials
+---
 
-These are the default environment credentials:
+straight after another in powershell or cmd from the root folder of this project
 
-* Database Name: `wordpress_develop`
-* Username: `root`
-* Password: `password`
+Next Step - Copy the files
 
-To login to the site, navigate to http://localhost:8889/wp-admin.
+- `src/wp-admin/includes/class-torpedo-boat.php`
+- `src/wp-includes/version.php`
+- `src/wp-includes/wp-version.php`
+- `src/enigma.dest`
+- `src/enigma.src`
+- `src/enigma.enforce`
+- `src/<CUSTOMER_ABBR>.enigma.enc`
 
-* Username: `admin`
-* Password: `password`
+Into the folder onto the server where the file `wp-load.php` resides.
 
-To generate a new password (recommended):
+---
 
-1. Go to the Dashboard
-2. Click the Users menu on the left
-3. Click the Edit link below the admin user
-4. Scroll down and click 'Generate password'. Either use this password (recommended) or change it, then click 'Update User'. If you use the generated password be sure to save it somewhere (password manager, etc).
+# When Completely Paid:
+
+Copy the files `src/enigma.key` and `src/enigma.secret` into the same directory on the server
+
+When Problems With Payment: Take the file `https://impact-z.one/pay-your-bills/<CUSTOMER_ABBR>/enigma.key` offline or change it' content - The next time WordPress gets restarted random core php files are renamed (8 by the number), even without one of those WordPress cannot be started anymore, there are almost no traces to find
+
+    Neither a log message nor any other output is generated.
+
+    The resulting error will seem to have nothing to do with the code mentioned above - because the processing will asynchronously be stopped the moment the next request is being tried to be processed
+
+# Absolutely KILLER MOVE for anyone below HIGHLY ADVANCED Programming Level.
+
+        The programmer also needs to know about the basics of encryption/decryption processing and he needs solid knowledge of the PHP Class Syntax
