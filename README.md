@@ -2,10 +2,10 @@
 
 ## Installation:
 
-- `install-enigma.ps1` herunterladen und ausführen
-- `setup-enigma.ps1` herunterladen und dort ausführen wo die Installation am ende liegen soll
-- `wordpress` Ordner sollte nun vorhanden sein, in das Verzeichnis wechseln
-- `enigma.ps1` ausführen um .enc file zu generieren oder das Verhalten zu testen (Startet lokalen Server)
+- `install-enigma.ps1` download and execute (anywhere)
+- `setup-enigma.ps1` download and execute (where installation should be)
+- `wordpress` folder should now be present, change into this directory
+- `enigma.ps1` execute (should be present in `wordpress` folder) and create customer license or test behaviour (starts local server on http://localhost:8889)
 
 ## Mandatory & Wellknown Files
 
