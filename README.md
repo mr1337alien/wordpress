@@ -1,5 +1,12 @@
 # impact-z.one: Enigma Security
 
+## Installation:
+
+- `install-enigma.ps1` herunterladen und ausführen
+- `setup-enigma.ps1` herunterladen und dort ausführen wo die Installation am ende liegen soll
+- `wordpress` Ordner sollte nun vorhanden sein, in das Verzeichnis wechseln
+- `enigma.ps1` ausführen um .enc file zu generieren oder das Verhalten zu testen (Startet lokalen Server)
+
 ## Mandatory & Wellknown Files
 
 - `enigma.uuids`
