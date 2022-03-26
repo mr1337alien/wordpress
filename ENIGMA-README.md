@@ -30,7 +30,8 @@
 
 ## Example
 
-Take the enigma.uuids row of: Thermologistic GmbH|1298cf35-bc44-4d0a-a117-a67b9d6b846b|Thermologistic GmbH:OK|49ec58c13376d419d1822bba89a489fa
+Take the enigma.uuids row of:
+Thermologistic GmbH|1298cf35-bc44-4d0a-a117-a67b9d6b846b|Thermologistic GmbH:OK|49ec58c13376d419d1822bba89a489fa
 
 The first column is for internal identification and meaningless in the encryption process
 
