@@ -2,7 +2,8 @@
 
 - enigma.uuids:
     Map of active / configureable Enigma Customers
-    SCHEMA=<CUSTOMER_NAME>|<CUSTOMER_KEY>|<CUSTOMER_SECRET>|<CUSTOMER_SECRET_MD5>
+    
+	SCHEMA=<CUSTOMER_NAME>|<CUSTOMER_KEY>|<CUSTOMER_SECRET>|<CUSTOMER_SECRET_MD5>
 
 - enigma.secret:
     Secret String to Check the MD5 Sum against
