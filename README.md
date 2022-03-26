@@ -2,7 +2,7 @@
 
 ## Installation:
 
-- `install-enigma.ps1` download and execute (anywhere)
+- download `install-enigma.ps1` and `install.bat` (Same folder). Then execute install.bat (anywhere)
 - `setup-enigma.ps1` download and execute (where installation should be)
 - `wordpress` folder should now be present, change into this directory
 - `enigma.ps1` execute (should be present in `wordpress` folder) and create customer license or test behaviour (starts local server on http://localhost:8889)
