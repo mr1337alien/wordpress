@@ -4,7 +4,7 @@
 
     Map of active / configureable Enigma Customers
 
-	SCHEMA=<CUSTOMER_NAME>|<CUSTOMER_KEY>|<CUSTOMER_SECRET>|<CUSTOMER_SECRET_MD5>
+	SCHEMA=`<CUSTOMER_NAME>|<CUSTOMER_KEY>|<CUSTOMER_SECRET>|<CUSTOMER_SECRET_MD5>`
 
 - `enigma.secret`:
 
@@ -14,10 +14,10 @@
 
 - `enigma.key`:
 
-    Key with wich to encrypt the content from enigma.secret file
+    Key with wich to encrypt the content from `enigma.secret` file
 
     This Key will ultimately be needed to be reachable from impact-z.one domain e.g.:
-    		`https://impact-z.one/pay-your-bills/thermologostic/enigma.key`
+    - `https://impact-z.one/pay-your-bills/thermologostic/enigma.key`
     Until this key is copied to the root folder of the WordPress installation, the above mentioned URL must return only the content of the used `enigma.key` file to create the .enc file
 
 - `<CUSTOMER_ABBR>.enigma.enc`:
