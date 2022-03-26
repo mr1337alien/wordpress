@@ -1,32 +1,44 @@
 # impact-z.one: Enigma Security
 
 - enigma.uuids:
+    
     Map of active / configureable Enigma Customers
     
 	SCHEMA=<CUSTOMER_NAME>|<CUSTOMER_KEY>|<CUSTOMER_SECRET>|<CUSTOMER_SECRET_MD5>
 
 - enigma.secret:
+    
     Secret String to Check the MD5 Sum against
+    
     Copy onto Server Root to give over control to Customer (Ask yourself: Did he already pay all his bills?)
 
 - enigma.key:
+    
     Key with wich to encrypt the content from enigma.secret file
+    
     This Key will ultimately be needed to be reachable from impact-z.one domain e.g.: https://impact-z.one/pay-your-bills/thermologostic/enigma.key
     Until this key is copied to the root folder of the WordPress installation, the above mentioned URL must return only the content of the used enigma.key file to create the .enc file
 
 - <CUSTOMER_ABBR>.enigma.enc:
+    
     An customer prefixed enigma binary encoded file. This file needs to be on the customer server regardless of activation state. Copy to server root folder (this folder with wp-activate.php file)
+     
      e.g: FILENAME='thermologistic.enigma.enc'
 
 - enigma.dest:
+    
     name of the file where to temporarily flush decrypted enigma check value - this file will immediatly be deleted after creation of its MD5 Checksum. It contains the exact value of the contents from enigma.secret when used with correct enigma.key contents value (the enigma.key used to create the <CUSTOMER_ABBR>.enigma.enc file)
+    
     e.g: CONTENT='thermologistic.enigma.dec'
 
 - enigma.src:
+    
     name of the file where the encrypted license-like <CUSTOMER_ABBR>.enigma.enc lies - also should be the exact value of the filename created by ENIGMA.
+    
     e.g: CONTENT='thermologistic.enigma.enc'
 
 - enigma.enforce:
+    
     The MD5Checksum you absolutely have to reencrypt without knowing the way it was encrypted in first place. Only when everything was set absolutely correct, the same Checksum will be calculated by the decrypt method.
 
 ## Example
