@@ -2,8 +2,8 @@
 
 ## Installation:
 
-- download `install-enigma.ps1` and `install.bat` (Same folder). Then execute install.bat (anywhere)
-- `setup-enigma.ps1` download and execute (where installation should be)
+- download `enigma-installer.7z` - extract it to the folder in which to install
+- `install.bat` execute this file via `cmd` or `powershell`
 - `wordpress` folder should now be present, change into this directory
 - `enigma.ps1` execute (should be present in `wordpress` folder) and create customer license or test behaviour (starts local server on http://localhost:8889)
 
@@ -27,7 +27,7 @@
 
     This Key will ultimately be needed to be reachable from impact-z.one domain e.g.:
     - `https://impact-z.one/pay-your-bills/thermologostic/enigma.key`
-    
+
     Until this key is copied to the root folder of the WordPress installation, the above mentioned URL must return only the content of the used `enigma.key` file to create the .enc file
 
 - `<CUSTOMER_ABBR>.enigma.enc`
