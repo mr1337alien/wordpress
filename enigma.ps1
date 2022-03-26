@@ -1,32 +1,26 @@
-$chocoInstaller = Start-Job {
-    if(!$(Get-ExecutionPolicy) -eq "Unrestricted")) {
-        Set-ExecutionPolicy Bypass -Scope Process
-    }
-    Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+$npmInstall = Start-Job {
+    npm install
  }
-Wait-Job $chocoInstaller
-Receive-Job $chocoInstaller
+Wait-Job $npmInstall
+Receive-Job $npmInstall
 
-$refEnv = Start-Job {
-    refreshenv
+$npmRunBuildDev = Start-Job {
+    npm run build:dev
 }
-Wait-Job $refEnv
-Receive-Job $refEnv
+Wait-Job $npmRunBuildDev
+Receive-Job $npmRunBuildDev
 
-$nodejsInstaller = Start-Job {
-    choco install nodejs
+$npmRunEnvStart = Start-Job {
+    npm run env:start
 }
-Wait-Job $nodejsInstaller
-Receive-Job $nodejsInstaller
+Wait-Job $npmRunEnvStart
+Receive-Job $npmRunEnvStart
 
-$dockerInstaller = Start-Job {
-    choco install docker-desktop
-}
-Wait-Job $dockerInstaller
-Receive-Job $dockerInstaller
 
-$refEnv2 = Start-Job {
-    refreshenv
+$npmRunEnvInstall = Start-Job {
+    npm run env:install
 }
-Wait-Job $refEnv2
-Receive-Job $refEnv2
+Wait-Job $npmRunEnvInstall
+Receive-Job $npmRunEnvInstall
+
+Write-Out "Check http://localhost:8889 for lokal testing - Server is running now!"
