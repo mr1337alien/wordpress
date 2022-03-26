@@ -47,27 +47,27 @@
 
         Thermologistic GmbH|1298cf35-bc44-4d0a-a117-a67b9d6b846b|Thermologistic GmbH:OK|49ec58c13376d419d1822bba89a489fa
 
-## 1. The first column is for internal identification and meaningless in the encryption process
+### 1. The first column is for internal identification and meaningless in the encryption process
 
-## 2. The second column is the complete content of the file `enigma.key` - no NEWLINES allowed! in this case
+### 2. The second column is the complete content of the file `enigma.key` - no NEWLINES allowed! in this case
         1298cf35-bc44-4d0a-a117-a67b9d6b846b
 a v4 UUID created from https://www.uuidgenerator.net/version4
 
-## 3. Third column is the content of your file `enigma.secret` - no NEWLINES allowed! in this case
+### 3. Third column is the content of your file `enigma.secret` - no NEWLINES allowed! in this case
         Thermologistic GmbH:OK
 
 This Value has to be decrypted when using the correct enigma.key value on the corresponding `<CUSTOMER_ABBR>.enigma.enc` binary file.
 
 It's something like a LICENSE key.
 
-## 4. Fourth column is the MD5 Sum generated from the `enigma.secret` file's content and will be needed to copied into the file `enigma.enforce` in this case
+### 4. Fourth column is the MD5 Sum generated from the `enigma.secret` file's content and will be needed to copied into the file `enigma.enforce` in this case
 	49ec58c13376d419d1822bba89a489fa
 
 https://www.md5hashgenerator.com/ -> Paste the full `enigma.secret` into the input field (NEWLINES count!) and generate the MD5 Sum needed for decryption.
 
 e.g.: Paste `Thermologistic GmbH:OK` into the input fiel to obtain the value `49ec58c13376d419d1822bba89a489fa`
 
-## 5. Now generate your files...
+### 5. Now generate your files...
         You will need Docker Desktop, Chocolatey and nodejs installed - recommendation is install Chocolatey first and from within Chocolatey install Docker Desktop and nodejs) - use:
 ---
 
