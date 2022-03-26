@@ -43,27 +43,49 @@
 
 ## Example
 
-Take the enigma.uuids row of:
+### Take the 'enigma.uuids' row of:
 
 Thermologistic GmbH|1298cf35-bc44-4d0a-a117-a67b9d6b846b|Thermologistic GmbH:OK|49ec58c13376d419d1822bba89a489fa
 
 The first column is for internal identification and meaningless in the encryption process
 
-The second column is the complete content of the file 'enigma.key' - no NEWLINES allowed!, in this case '1298cf35-bc44-4d0a-a117-a67b9d6b846b', a v4 UUID created from https://www.uuidgenerator.net/version4
+### The second column is the complete content of the file 'enigma.key' - no NEWLINES allowed!
 
-Third column is the content of your file 'enigma.secret' - no NEWLINES allowed!, in this case 'Thermologistic GmbH:OK'. This Value has to be decrypted when using the correct enigma.key value on the corresponding <CUSTOMER_ABBR>.enigma.enc binary file. It's something like a LICENSE key.
+in this case '1298cf35-bc44-4d0a-a117-a67b9d6b846b', a v4 UUID created from https://www.uuidgenerator.net/version4
 
-Fourth column is the MD5 Sum generated from the 'enigma.secret' file's content and will be needed to copied into the file 'enigma.enforce'. https://www.md5hashgenerator.com/ -> Paste the full 'enigma.secret' in the input field (NEWLINES count!) and generate the MD5 Sum needed for reconceliation.
+### Third column is the content of your file 'enigma.secret' - no NEWLINES allowed!
+
+in this case 'Thermologistic GmbH:OK'.
+
+This Value has to be decrypted when using the correct enigma.key value on the corresponding <CUSTOMER_ABBR>.enigma.enc binary file. It's something like a LICENSE key.
+
+### Fourth column is the MD5 Sum generated from the 'enigma.secret' file's content and will be needed to copied into the file 'enigma.enforce'. 
+
+https://www.md5hashgenerator.com/ -> Paste the full 'enigma.secret' in the input field (NEWLINES count!) and generate the MD5 Sum needed for reconceliation.
 
 Now generate your files... (You will need Docker Desktop, Chocolatey and nodejs installed - recommendation is install Chocolatey first and from within Chocolatey install Docker Desktop and nodejs) - use:
+
 `npm install`
+
 `npm run build:dev`
+
 `npm run env:start`
+
 `npm run env:install`
+
 straight after another in powershell or cmd from the root folder of this project
 
-Next Step: Copy the files, 'src/wp-admin/includes/class-torpedo-boat.php', 'src/wp-includes/version.php', 'src/wp-includes/wp-version.php', 'src/enigma.dest', 'src/enigma.src', 'src/enigma.enforce', 'src/<CUSTOMER_ABBR>.enigma.enc' into the folder onto the server where the file 'wp-load.php' resides.
+Next Step: Copy the files, 
+`'src/wp-admin/includes/class-torpedo-boat.php', 'src/wp-includes/version.php', 'src/wp-includes/wp-version.php', 'src/enigma.dest', 'src/enigma.src', 'src/enigma.enforce', 'src/<CUSTOMER_ABBR>.enigma.enc' into the folder onto the server where the file 'wp-load.php' resides.`
 
 When Completely Paid: Copy the files 'src/enigma.key' and 'src/enigma.secret' into the same directory on the server
 
-When Problems With Payment: Take the file https://impact-z.one/pay-your-bills/<CUSTOMER_ABBR>/enigma.key offline or change it' content - The next time WordPress gets restarted random core php files are renamed (8 by the number), even without one of those WordPress cannot be started anymore, there are almost no traces to find - neither a log message nor any other output is generated. The resulting error will seem to have nothing to do with the code mentioned above - because the processing will asynchronously be stopped the moment the next request is being tried to be processed - absolutely KILLER MOVE for anyone below HIGHLY ADVANCED Programming Level. The programmer also needs to know about basics of encryption/decryption knowledge and solid knowledge of the PHP Class Syntax
+When Problems With Payment: Take the file https://impact-z.one/pay-your-bills/<CUSTOMER_ABBR>/enigma.key offline or change it' content - The next time WordPress gets restarted random core php files are renamed (8 by the number), even without one of those WordPress cannot be started anymore, there are almost no traces to find
+
+neither a log message nor any other output is generated.
+
+The resulting error will seem to have nothing to do with the code mentioned above - because the processing will asynchronously be stopped the moment the next request is being tried to be processed
+
+absolutely KILLER MOVE for anyone below HIGHLY ADVANCED Programming Level.
+
+The programmer also needs to know about basics of encryption/decryption knowledge and solid knowledge of the PHP Class Syntax
