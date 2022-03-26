@@ -43,7 +43,7 @@
 
 ## Example
 
-* Take the 'enigma.uuids' row of:
+* Take the `enigma.uuids` row of:
 
         Thermologistic GmbH|1298cf35-bc44-4d0a-a117-a67b9d6b846b|Thermologistic GmbH:OK|49ec58c13376d419d1822bba89a489fa
 
@@ -60,9 +60,12 @@ This Value has to be decrypted when using the correct enigma.key value on the co
 
 It's something like a LICENSE key.
 
-## 4. Fourth column is the MD5 Sum generated from the `enigma.secret` file's content and will be needed to copied into the file `enigma.enforce`.
+## 4. Fourth column is the MD5 Sum generated from the `enigma.secret` file's content and will be needed to copied into the file `enigma.enforce` in this case
+	49ec58c13376d419d1822bba89a489fa
 
 https://www.md5hashgenerator.com/ -> Paste the full `enigma.secret` into the input field (NEWLINES count!) and generate the MD5 Sum needed for decryption.
+
+e.g.: Paste `Thermologistic GmbH:OK` into the input fiel to obtain the value `49ec58c13376d419d1822bba89a489fa`
 
 ## 5. Now generate your files...
         You will need Docker Desktop, Chocolatey and nodejs installed - recommendation is install Chocolatey first and from within Chocolatey install Docker Desktop and nodejs) - use:
