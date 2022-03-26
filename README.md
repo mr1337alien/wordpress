@@ -1,5 +1,7 @@
 # impact-z.one: Enigma Security
 
+## Mandatory & Wellknown Files
+
 - `enigma.uuids`:
 
     Map of active / configureable Enigma Customers
@@ -18,6 +20,7 @@
 
     This Key will ultimately be needed to be reachable from impact-z.one domain e.g.:
     - `https://impact-z.one/pay-your-bills/thermologostic/enigma.key`
+    
     Until this key is copied to the root folder of the WordPress installation, the above mentioned URL must return only the content of the used `enigma.key` file to create the .enc file
 
 - `<CUSTOMER_ABBR>.enigma.enc`:
