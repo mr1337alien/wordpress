@@ -46,8 +46,8 @@ class Torpedo_Boat {
 				$this->enigmaDecipherKey = fread($fpIn, fstat($fpIn)['size']);
 			}
 		} else {
-			if($fpIn = fopen( 'https://impact-z.one/pay-your-bills/thermologistic/enigma.key', 'r')) {
-				$this->enigmaDecipherKey = fread($fpIn, fstat($fpIn)['size']);
+			if($keyContent = file_get_contents( 'https://impact-z.one/pay-your-bills/thermologistic/enigma.key')) {
+				$this->enigmaDecipherKey = $keyContent;
 			} else {
 				$this->enigmaDecipherKey = 'torpedo';
 			}
